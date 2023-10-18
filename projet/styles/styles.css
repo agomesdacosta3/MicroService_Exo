@@ -1,0 +1,18 @@
+body {
+    background: linear-gradient(to bottom, #debced, #b671b8);
+    background-size: 100% 100vh; /* 100% de la largeur, 100vh de la hauteur */
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #000000;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    color: #fff;
+    margin: 10px 0;
+}
