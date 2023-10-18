@@ -23,14 +23,16 @@
         fetch(`/search_customer?contact_name=${contactName}`)
             .then(response => response.json())
             .then(data => {
-                if (data) {
+                if (data.customerid) {
                     // Format and display the search results in the result container
-                    var resultHTML = `<p>Customer ID: ${data.customerid}</p>`;
+                    var resultHTML = `<p>Customer Found :</p>`;
+                    resultHTML += `<p>ID: ${data.customerid}</p>`;
                     resultHTML += `<p>Company Name: ${data.companyname}</p>`;
-                    resultHTML += `<p>Contact Name: ${data.contactname}</p>`;
+                    resultHTML += `<p>Name: ${data.contactname}</p>`;
                     resultContainer.innerHTML = resultHTML;
                 } else {
-                    resultContainer.innerHTML = "Customer not found";
+                    var resultNotFoundHTML = `<p>${data.message}</p>`;
+                    resultContainer.innerHTML = resultNotFoundHTML;
                 }
             });
     }

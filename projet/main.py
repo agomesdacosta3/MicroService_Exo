@@ -1,8 +1,9 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from fastapi.staticfiles import StaticFiles  # Importez la fonctionnalité des fichiers statiques
 
 app = FastAPI()
 engine = create_engine('postgresql://postgres:postgres@db/northwind')
@@ -31,9 +32,17 @@ async def search_customer(request: Request, contact_name: str):
     customer = result.fetchone()
 
     if customer:
-        return customer._asdict()  # Convert to a dictionary for JSON
+        # Convertir les données du client en un dictionnaire JSON
+        customer_data = {
+            "customerid": customer[0],
+            "companyname": customer[1],
+            "contactname": customer[2]
+        }
+        return JSONResponse(content=customer_data)
     else:
-        return {"error": "Customer not found"}  # Renvoyer un objet JSON en cas de client non trouvé
+        # Renvoyer une réponse JSON avec le message "Customer not found"
+        message = {"message": f"Customer {contact_name} not found"}
+        return JSONResponse(content=message)
 
 @app.get('/get_all_customer')
 async def get_all_customer(request: Request):
