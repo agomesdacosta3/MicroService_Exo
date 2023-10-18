@@ -6,7 +6,7 @@
 
 ## Architecture globale :
 
-![image](https://github.com/agomesdacosta3/MicroService_Exo/blob/main/Architecture%20MicroService.drawio.png)
+![image](https://github.com/agomesdacosta3/MicroService_Exo/blob/main/Architecture.png)
 
 ## Technologies :
 
