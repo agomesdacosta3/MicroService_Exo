@@ -16,7 +16,7 @@ services:
     ports:
       - 55432:5432
     networks:
-      - db
+      - db_network
 
   pgadmin:
     container_name: pgadmin
@@ -34,7 +34,7 @@ services:
     ports:
       - 5050:5050
     networks:
-      - db
+      - db_network
 
   app:
     build:
@@ -47,8 +47,8 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - db
-      - mynetwork
+      - db_network
+      - app_network
 
   nginx:
     image: nginx:latest
@@ -59,15 +59,15 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./certs:/etc/ssl/certs
     networks:
-      - mynetwork
+      - app_network
     depends_on:
       - app
     restart: always
 
 networks:
-  db:
+  db_network:
     driver: bridge
-  mynetwork:
+  app_network:
     driver: bridge
 
 

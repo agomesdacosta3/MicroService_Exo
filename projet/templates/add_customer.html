@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Add Customer</title>
-    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
+  </head>
+  <body>
     <h1>Add a Customer</h1>
-    <form method="post" action="/add_customer">
-        <label for="customerid">Customer ID:</label>
-        <input type="text" id="customerid" name="customerid" required><br>
-        
-        <label for="companyname">Company Name:</label>
-        <input type="text" id="companyname" name="companyname" required><br>
+    <form method="post" action="javascript:void(0);">
+      <label for="customerid">Customer ID:</label>
+      <input type="text" id="customerid" name="customerid" required /><br />
 
-        <label for="contactname">Contact Name:</label>
-        <input type="text" id="contactname" name="contactname" required><br>
+      <label for="companyname">Company Name:</label>
+      <input type="text" id="companyname" name="companyname" required /><br />
 
-        <button type="submit">Add Customer</button>
+      <label for="contactname">Contact Name:</label>
+      <input type="text" id="contactname" name="contactname" required /><br />
+
+      <button type="submit" onclick="addCustomer()">Add Customer</button>
     </form>
-</body>
+
+    <div id="add_customer_result"></div>
+  </body>
 </html>
+
+<script>
+  function addCustomer() {
+    var resultContainer = document.getElementById("add_customer_result");
+    var customerid = document.getElementById("customerid").value;
+    var companyname = document.getElementById("companyname").value;
+    var contactname = document.getElementById("contactname").value;
+
+    fetch("/add_customer_db", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `customerid=${customerid}&companyname=${companyname}&contactname=${contactname}`,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        var addCustomerMessageHTML = `<p>${data.message}</p>`;
+        resultContainer.innerHTML = addCustomerMessageHTML;
+      });
+  }
+</script>
