@@ -38,7 +38,7 @@ async def add_customer_db(
         session.commit()
         message = "Customer added successfully."
     except Exception as e:
-        message = f"Error adding customer"
+        message = f"Error adding customer. Please check your customer information"
 
     # Créer une réponse JSON avec le message
     response_data = {"message": message}
