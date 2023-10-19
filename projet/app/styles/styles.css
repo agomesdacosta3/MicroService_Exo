@@ -1,10 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
 body {
     background: linear-gradient(to bottom, #debced, #b671b8);
-    background-size: 100% 100vh; /* 100% de la largeur, 100vh de la hauteur */
+    min-height: 100vh;
     text-align: center;
     padding: 20px;
 }
