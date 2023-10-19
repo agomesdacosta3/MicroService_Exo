@@ -5,11 +5,15 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
 </head>
 <body>
-    <h1>List of Customers</h1>
-    <ul>
+    <h1>List of Customers (First 20)</h1>
+    <div class="card-container">
         {% for customer in customers %}
-            <li>Customer ID: {{ customer.customerid }}, Company Name: {{ customer.companyname }}, Contact Name: {{ customer.contactname }}</li>
+            <div class="card">
+                <h2>ID : {{ customer.customerid }}</h2>
+                <p>Company : {{ customer.companyname }}</p>
+                <p>Contact : {{ customer.contactname }}</p>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
